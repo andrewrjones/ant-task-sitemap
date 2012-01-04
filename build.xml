@@ -4,6 +4,7 @@
     <property name="src.dir" value="src"/>
     <property name="test.dir" value="test"/>
     <property name="lib.dir"   value="lib"/>
+    <property name="testlib.dir"   value="testlib"/>
     <property name="classes.dir" value="classes"/>
     <property name="report.dir"   value="report"/>
     <property name="junit.out.dir.xml"  value="${report.dir}/junit/xml"/>
@@ -18,6 +19,7 @@
     <path id="classpath.test">
         <path refid="classpath.run"/>
         <path location="${ant.test.lib}"/>
+        <fileset dir="${testlib.dir}" includes="**/*.jar"/>
     </path>
 
 <!-- clean directories -->
@@ -27,12 +29,15 @@
             <fileset dir="${classes.dir}"/>
             <fileset dir="${report.dir}"/>
         </delete>
+        <mkdir dir="${classes.dir}"/>
     </target>
 
-<!-- compile src and test -->
-    <target name="compile" description="Compiles the Task">
-        <mkdir dir="${classes.dir}"/>
+<!-- compile tasks -->
+    <target name="compile" description="Compiles the source">
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath.run"/>
+    </target>
+    
+    <target name="compile-test" description="Compiles the tests">
         <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath.test"/>
     </target>
 
@@ -47,8 +52,8 @@
         <sitemap/>
     </target>
     
-<!-- 'test' tasks -->
-    <target name="junit" description="Runs the unit tests" depends="jar">
+<!-- test tasks -->
+    <target name="junit" description="Runs the unit tests" depends="compile-test, jar">
         <delete dir="${junit.out.dir.xml}"/>
         <mkdir  dir="${junit.out.dir.xml}"/>
         <junit printsummary="yes" haltonfailure="yes">
