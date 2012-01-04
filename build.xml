@@ -42,7 +42,7 @@
     <target name="junit" description="Runs the unit tests" depends="jar">
         <delete dir="${junit.out.dir.xml}"/>
         <mkdir  dir="${junit.out.dir.xml}"/>
-        <junit printsummary="yes" haltonfailure="no">
+        <junit printsummary="yes" haltonfailure="yes">
             <classpath refid="classpath.test"/>
             <formatter type="xml"/>
             <batchtest fork="yes" todir="${junit.out.dir.xml}">
