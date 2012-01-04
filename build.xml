@@ -5,6 +5,7 @@
     <property name="test.dir" value="test"/>
     <property name="lib.dir"   value="lib"/>
     <property name="testlib.dir"   value="testlib"/>
+    <property name="test-resources.dir" value="test-resources"/>
     <property name="classes.dir" value="classes"/>
     <property name="report.dir"   value="report"/>
     <property name="junit.out.dir.xml"  value="${report.dir}/junit/xml"/>
@@ -47,9 +48,29 @@
     </target>
     
 <!-- 'use' tasks for our new task -->
-    <target name="use.without" description="Use without any files" depends="jar">
-        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpath="${ant.project.name}.jar"/>
+    <target name="use.without.url" description="Use without URL" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap/>
+    </target>
+    
+    <target name="use.without.destdir" description="Use without URL" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com"/>
+    </target>
+
+    <target name="use.without.files" description="Use without any files" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}"/>
+    </target>
+    
+    <target name="use.default" description="Use with default" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}">
+            <fileset dir="${test-resources.dir}">
+                <include name="**.htm"/>
+                <include name="**.html"/>
+            </fileset>
+        </sitemap>
     </target>
     
 <!-- test tasks -->
