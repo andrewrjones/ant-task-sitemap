@@ -2,6 +2,7 @@
 <project name="ant-task-sitemap" basedir="." default="test">
 
     <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
     <property name="lib.dir"   value="lib"/>
     <property name="classes.dir" value="classes"/>
     <property name="report.dir"   value="report"/>
@@ -30,6 +31,7 @@
     <target name="compile" description="Compiles the Task">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath.run"/>
+        <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath.test"/>
     </target>
 
     <target name="jar" description="JARs the Task" depends="compile">
@@ -48,7 +50,7 @@
             <classpath refid="classpath.test"/>
             <formatter type="xml"/>
             <batchtest fork="yes" todir="${junit.out.dir.xml}">
-                <fileset dir="${src.dir}" includes="**/*Test.java"/>
+                <fileset dir="${test.dir}" includes="**/*Test.java"/>
             </batchtest>
         </junit>
     </target>
