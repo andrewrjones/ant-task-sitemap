@@ -81,7 +81,8 @@ public class Sitemap extends Task {
 
                     // Make file object from base directory and filename
                     File temp = new File(dir,srcs[j]);
-                    System.out.println(temp.getName());
+
+                    // add to suremap
                     wsg.addUrl(this.url+temp.getName());
                 }
                 wsg.write();
