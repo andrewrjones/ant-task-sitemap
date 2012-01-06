@@ -14,7 +14,7 @@ import java.io.File;
 
 public class Sitemap extends Task {
     
-    private Vector filesets = new Vector();
+    private Vector<FileSet> filesets = new Vector<FileSet>();
     private File destdir;
     private String url;
     
@@ -67,7 +67,7 @@ public class Sitemap extends Task {
             for (int i = 0; i < filesets.size(); i++) {
             
                 // Get current fileset
-                FileSet fs = (FileSet)filesets.elementAt(i);
+                FileSet fs = filesets.elementAt(i);
                 DirectoryScanner ds = fs.getDirectoryScanner(getProject());
 
                 // Get base directory from fileset
