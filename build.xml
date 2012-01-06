@@ -37,11 +37,15 @@
 
 <!-- compile tasks -->
     <target name="compile" description="Compiles the source">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath.run"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath.run">
+            <compilerarg value="-Xlint"/>
+        </javac>
     </target>
     
     <target name="compile-test" description="Compiles the tests">
-        <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath.test"/>
+        <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath.test">
+            <compilerarg value="-Xlint"/>
+        </javac>
     </target>
 
 <!-- create jar -->
