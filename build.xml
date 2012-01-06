@@ -8,6 +8,7 @@
     <property name="test-resources.dir" value="test-resources"/>
     <property name="classes.dir" value="classes"/>
     <property name="report.dir"   value="report"/>
+    <property name="docs.dir"   value="docs"/>
     <property name="junit.out.dir.xml"  value="${report.dir}/junit/xml"/>
     <property name="junit.out.dir.html" value="${report.dir}/junit/html"/>
 
@@ -29,6 +30,7 @@
             <fileset dir="." includes="${ant.project.name}.jar"/>
             <fileset dir="${classes.dir}"/>
             <fileset dir="${report.dir}"/>
+            <fileset dir="${docs.dir}"/>
         </delete>
         <mkdir dir="${classes.dir}"/>
     </target>
@@ -47,6 +49,23 @@
         <jar destfile="${ant.project.name}.jar" basedir="${classes.dir}"/>
     </target>
     
+<!-- create docs -->
+    <target name="javadoc" description="Generates the javadoc">
+        <javadoc packagenames="uk.co.arjones.ant.task.*"
+               sourcepath="src"
+               excludepackagenames="uk.co.arjones.ant.task.*Test"
+               defaultexcludes="yes"
+               destdir="${docs.dir}/api"
+               author="true"
+               version="true"
+               use="true"
+               windowtitle="ant-task-sitemap"
+               classpathref="classpath.run">
+            <doctitle><![CDATA[<h1>Test</h1>]]></doctitle>
+            <bottom><![CDATA[<i>Copyright 2012 Andrew Jones</i>]]></bottom>
+        </javadoc>
+    </target>
+
 <!-- 'use' tasks for our new task -->
     <target name="use.without.url" description="Use without URL" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
