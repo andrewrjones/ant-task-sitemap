@@ -29,8 +29,8 @@ public class Sitemap extends Task {
     }
     
     /**
-    * Recieves copyright attribute from the ant task
-    * @param copyright
+    * Recieves the url attribute from the ant task
+    * @param url
     */
     public void setUrl(String url) {
         this.url = url;
