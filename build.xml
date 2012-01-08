@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="ant-task-sitemap" basedir="." default="test">
-    <property name="VERSION" value="0.1" />
-
-    <property name="src.dir" value="src"/>
-    <property name="test.dir" value="test"/>
-    <property name="lib.dir"   value="lib"/>
-    <property name="testlib.dir"   value="testlib"/>
-    <property name="test-resources.dir" value="test-resources"/>
-    <property name="classes.dir" value="classes"/>
-    <property name="report.dir"   value="report"/>
-    <property name="docs.dir"   value="docs"/>
-    <property name="jar"   value="${ant.project.name}-${VERSION}.jar"/>
-    <property name="junit.out.dir.xml"  value="${report.dir}/junit/xml"/>
-    <property name="junit.out.dir.html" value="${report.dir}/junit/html"/>
+    <property file="build.properties" />
 
     <path id="classpath.run">
         <path path="${java.class.path}"/>
