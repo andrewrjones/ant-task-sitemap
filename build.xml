@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="ant-task-sitemap" basedir="." default="test">
+    <property name="VERSION" value="0.1" />
 
     <property name="src.dir" value="src"/>
     <property name="test.dir" value="test"/>
@@ -9,12 +10,13 @@
     <property name="classes.dir" value="classes"/>
     <property name="report.dir"   value="report"/>
     <property name="docs.dir"   value="docs"/>
+    <property name="jar"   value="${ant.project.name}-${VERSION}.jar"/>
     <property name="junit.out.dir.xml"  value="${report.dir}/junit/xml"/>
     <property name="junit.out.dir.html" value="${report.dir}/junit/html"/>
 
     <path id="classpath.run">
         <path path="${java.class.path}"/>
-        <path location="${ant.project.name}.jar"/>
+        <path location="${jar}"/>
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
 
@@ -27,7 +29,7 @@
 <!-- clean directories -->
     <target name="clean" description="Delete all generated files">
         <delete failonerror="false" includeEmptyDirs="true">
-            <fileset dir="." includes="${ant.project.name}.jar"/>
+            <fileset dir="." includes="${jar}"/>
             <fileset dir="${classes.dir}"/>
             <fileset dir="${report.dir}"/>
             <fileset dir="${docs.dir}"/>
@@ -50,7 +52,7 @@
 
 <!-- create jar -->
     <target name="jar" description="JARs the Task" depends="compile">
-        <jar destfile="${ant.project.name}.jar" basedir="${classes.dir}"/>
+        <jar destfile="${jar}" basedir="${classes.dir}"/>
     </target>
     
 <!-- create docs -->

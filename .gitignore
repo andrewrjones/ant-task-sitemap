@@ -1,6 +1,6 @@
 *~
 .redcar/
-ant-task-sitemap.jar
+ant-task-sitemap-*.jar
 classes/
 report/
 docs/
