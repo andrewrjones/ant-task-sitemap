@@ -96,11 +96,21 @@
         </sitemap>
     </target>
     
+    <target name="use.gzip" description="Use with default" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}" gzip="yes">
+            <fileset dir="${test-resources.dir}">
+                <include name="**.htm"/>
+                <include name="**.html"/>
+            </fileset>
+        </sitemap>
+    </target>
+
 <!-- test tasks -->
     <target name="junit" description="Runs the unit tests" depends="compile-test, jar">
         <delete dir="${junit.out.dir.xml}"/>
         <mkdir  dir="${junit.out.dir.xml}"/>
-        <junit printsummary="yes" haltonfailure="yes">
+        <junit printsummary="yes" haltonfailure="no">
             <classpath refid="classpath.test"/>
             <formatter type="xml"/>
             <batchtest fork="yes" todir="${junit.out.dir.xml}">

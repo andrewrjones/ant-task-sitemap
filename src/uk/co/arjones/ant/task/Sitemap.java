@@ -17,6 +17,7 @@ public class Sitemap extends Task {
     private Vector<FileSet> filesets = new Vector<FileSet>();
     private File destdir;
     private String url;
+    private boolean gzip = false;
     
     /**
      * Receives a nested fileset from the ant task
@@ -45,6 +46,14 @@ public class Sitemap extends Task {
     }
     
     /**
+     * If true, also generate a gzip file
+     * @param gzip
+     */
+    public void setGzip(boolean gzip) {
+        this.gzip = gzip;
+    }
+    
+    /**
      * Executes the task
      */
      public void execute() throws BuildException {
@@ -62,6 +71,10 @@ public class Sitemap extends Task {
         
         try {
             WebSitemapGenerator wsg = new WebSitemapGenerator(this.url, this.destdir);
+            WebSitemapGenerator wsgzip = null;
+            if(this.gzip == true){
+                wsgzip = WebSitemapGenerator.builder(this.url, this.destdir).gzip(true).build();
+            }
             
             // Loop through fileset
             for (int i = 0; i < filesets.size(); i++) {
@@ -82,10 +95,19 @@ public class Sitemap extends Task {
                     // Make file object from base directory and filename
                     File temp = new File(dir,srcs[j]);
 
-                    // add to suremap
+                    // add to sitemap
                     wsg.addUrl(this.url+temp.getName());
+                    
+                    // add to sitemap gzip
+                    if(wsgzip != null){
+                        wsgzip.addUrl(this.url+temp.getName());
+                    }
                 }
                 wsg.write();
+                
+                if(wsgzip != null){
+                    wsgzip.write();
+                }
             }
         } catch(Exception e) {
             throw new BuildException(e);
