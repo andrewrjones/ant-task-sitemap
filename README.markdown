@@ -33,7 +33,7 @@ I use Ant to package more than Java, including some static websites. Using this 
   </tr>
   <tr>
     <td valign="top">destdir</td>
-    <td valign="top">Where we write the sitemap too.</td>
+    <td valign="top">Where we write the sitemap to.</td>
     <td align="center" valign="top">Yes</td>
   </tr>
   <tr>
