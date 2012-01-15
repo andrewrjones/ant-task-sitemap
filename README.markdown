@@ -67,7 +67,7 @@ I use Ant to package more than Java, including some static websites. Using this 
   </tr>
   <tr>
     <td valign="top">fileset</td>
-    <td valign="top">Where should we look for files to add to the sitemap? This is the same as any other [FileSet](http://ant.apache.org/manual/Types/fileset.html). </td>
+    <td valign="top">Where should we look for files to add to the sitemap? This is the same as any other <a href="http://ant.apache.org/manual/Types/fileset.html">FileSet</a>.</td>
     <td align="center" valign="top">Yes</td>
   </tr>
 </table>
