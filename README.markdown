@@ -44,12 +44,12 @@ I use Ant to package more than Java, including some static websites. Using this 
   <tr>
     <td valign="top">index</td>
     <td valign="top">The index page of the website, which should just be written as the URL. This is a regex.</td>
-    <td align="center" valign="top">`index.*`</td>
+    <td align="center" valign="top"><code>index.*</code></td>
   </tr>
   <tr>
     <td valign="top">lastmod</td>
-    <td valign="top">If specified, we can try to generate a `lastmod` entry for the file. By passing in `now`, we will write the `lastmod` as the time when we build. By passing in `fromfile`, we will take the last modified time of the file.</td>
-    <td align="center" valign="top">Don't write `lastmod` time.</td>
+    <td valign="top">If specified, we can try to generate a <code>lastmod</code> entry for the file. By passing in <code>now</code>, we will write the <code>lastmod</code> as the time when we build. By passing in <code>fromfile</code>, we will take the last modified time of the file.</td>
+    <td align="center" valign="top">Don't write <code>lastmod</code> time.</td>
   </tr>
   <tr>
     <td valign="top">url</td>
@@ -67,7 +67,7 @@ I use Ant to package more than Java, including some static websites. Using this 
   </tr>
   <tr>
     <td valign="top">fileset</td>
-    <td valign="top">Where should we look for files to add to the sitemap? This is the same as any other [FileSet](http://ant.apache.org/manual/Types/fileset.html).</td>
+    <td valign="top">Where should we look for files to add to the sitemap? This is the same as any other [FileSet](http://ant.apache.org/manual/Types/fileset.html). </td>
     <td align="center" valign="top">Yes</td>
   </tr>
 </table>
