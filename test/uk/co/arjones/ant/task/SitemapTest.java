@@ -95,9 +95,9 @@ public class SitemapTest extends BuildFileTest {
         assertFalse(sitemapGzipExists());
     }
     
-    public void testLastModToday() {
+    public void testLastModNow() {
         // run target
-        executeTarget("use.lastmod.today");
+        executeTarget("use.lastmod.now");
         
         // check sitemap is valid
         File sitemap = getSitemapFile();

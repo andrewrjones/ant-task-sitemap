@@ -123,12 +123,12 @@ public class Sitemap extends Task {
                     // create the url
                     WebSitemapUrl url;
                     if(this.lastmod != null){
-                        if(this.lastmod.toLowerCase().equals("today")){
+                        if(this.lastmod.toLowerCase().equals("now")){
                             url = new WebSitemapUrl.Options(path).lastMod(new Date()).build();
                         } else if(this.lastmod.toLowerCase().equals("fromfile")){
                             url = new WebSitemapUrl.Options(path).lastMod(new Date(temp.lastModified())).build();
                         } else {
-                            throw new BuildException("lastmod needs to be either 'today' or 'fromfile'");
+                            throw new BuildException("lastmod needs to be either 'now' or 'fromfile'");
                         }
                     } else {
                         url = new WebSitemapUrl.Options(path).build();
