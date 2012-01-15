@@ -129,6 +129,38 @@ public class SitemapTest extends BuildFileTest {
         assertFalse(sitemapGzipExists());
     }
     
+    public void testIndex() {
+        // run target
+        executeTarget("use.index");
+        
+        // check sitemap is valid
+        File sitemap = getSitemapFile();
+        assertTrue(sitemap.exists());
+        try {
+            SitemapValidator.validateWebSitemap(sitemap);
+        } catch( Exception e ){
+            fail("exception thrown when validating sitemap");
+        }
+        
+        assertFalse(sitemapGzipExists());
+    }
+    
+    public void testIndexAbout() {
+        // run target
+        executeTarget("use.index.about");
+        
+        // check sitemap is valid
+        File sitemap = getSitemapFile();
+        assertTrue(sitemap.exists());
+        try {
+            SitemapValidator.validateWebSitemap(sitemap);
+        } catch( Exception e ){
+            fail("exception thrown when validating sitemap");
+        }
+        
+        assertFalse(sitemapGzipExists());
+    }
+    
     /**
      * Utility function to check if sitemap.xml exists.
      * @return true if it does exist, false if not.

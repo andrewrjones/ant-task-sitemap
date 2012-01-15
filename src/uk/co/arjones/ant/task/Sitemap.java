@@ -19,6 +19,7 @@ public class Sitemap extends Task {
     private Vector<FileSet> filesets = new Vector<FileSet>();
     private File destdir;
     private String url;
+    private String index = "index.*";
     private String lastmod;
     private boolean gzip = false;
     
@@ -38,6 +39,14 @@ public class Sitemap extends Task {
     */
     public void setUrl(String url) {
         this.url = url;
+    }
+    
+    /**
+    * Recieves the index attribute from the ant task
+    * @param index
+    */
+    public void setIndex(String index) {
+        this.index = index;
     }
     
     /**
@@ -107,6 +116,9 @@ public class Sitemap extends Task {
                     File temp = new File(dir,srcs[j]);
                     
                     String path = this.url + "/" + temp.getName();
+                    if(temp.getName().matches(this.index)){
+                        path = this.url + "/";
+                    }
                     
                     // create the url
                     WebSitemapUrl url;
