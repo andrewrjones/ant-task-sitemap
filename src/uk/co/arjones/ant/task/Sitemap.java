@@ -8,15 +8,18 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.util.FileUtils;
 
 import com.redfin.sitemapgenerator.WebSitemapGenerator;
+import com.redfin.sitemapgenerator.WebSitemapUrl;
 
 import java.util.Vector;
 import java.io.File;
+import java.util.Date;
 
 public class Sitemap extends Task {
     
     private Vector<FileSet> filesets = new Vector<FileSet>();
     private File destdir;
     private String url;
+    private String lastmod;
     private boolean gzip = false;
     
     /**
@@ -35,6 +38,14 @@ public class Sitemap extends Task {
     */
     public void setUrl(String url) {
         this.url = url;
+    }
+    
+    /**
+    * Recieves the lastmod attribute from the ant task
+    * @param lastmod
+    */
+    public void setLastmod(String lastmod) {
+        this.lastmod = lastmod;
     }
     
     /**
@@ -94,13 +105,29 @@ public class Sitemap extends Task {
 
                     // Make file object from base directory and filename
                     File temp = new File(dir,srcs[j]);
+                    
+                    String path = this.url + "/" + temp.getName();
+                    
+                    // create the url
+                    WebSitemapUrl url;
+                    if(this.lastmod != null){
+                        if(this.lastmod.toLowerCase().equals("today")){
+                            url = new WebSitemapUrl.Options(path).lastMod(new Date()).build();
+                        } else if(this.lastmod.toLowerCase().equals("fromfile")){
+                            url = new WebSitemapUrl.Options(path).lastMod(new Date(temp.lastModified())).build();
+                        } else {
+                            throw new BuildException("lastmod needs to be either 'today' or 'fromfile'");
+                        }
+                    } else {
+                        url = new WebSitemapUrl.Options(path).build();
+                    }
 
                     // add to sitemap
-                    wsg.addUrl(this.url+temp.getName());
+                    wsg.addUrl(url);
                     
                     // add to sitemap gzip
                     if(wsgzip != null){
-                        wsgzip.addUrl(this.url+temp.getName());
+                        wsgzip.addUrl(url);
                     }
                 }
                 wsg.write();

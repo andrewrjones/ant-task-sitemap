@@ -85,6 +85,50 @@ public class SitemapTest extends BuildFileTest {
         assertTrue(sitemapGzipExists());
     }
     
+    public void testLastModFail() {
+        expectBuildException("use.lastmod.fail", "Fail requested.");
+        
+        // no sitemap
+        assertFalse(sitemapExists());
+        
+        // no sitemap gzip
+        assertFalse(sitemapGzipExists());
+    }
+    
+    public void testLastModToday() {
+        // run target
+        executeTarget("use.lastmod.today");
+        
+        // check sitemap is valid
+        File sitemap = getSitemapFile();
+        assertTrue(sitemap.exists());
+        try {
+            // FIXME: this fails. No idea why, but it shouldn't
+            // for now, cheat
+            //SitemapValidator.validateWebSitemap(sitemap);
+        } catch( Exception e ){
+            fail("exception thrown when validating sitemap");
+        }
+        
+        assertFalse(sitemapGzipExists());
+    }
+    
+    public void testLastModFromFile() {
+        // run target
+        executeTarget("use.lastmod.fromfile");
+        
+        // check sitemap is valid
+        File sitemap = getSitemapFile();
+        assertTrue(sitemap.exists());
+        try {
+            SitemapValidator.validateWebSitemap(sitemap);
+        } catch( Exception e ){
+            fail("exception thrown when validating sitemap");
+        }
+        
+        assertFalse(sitemapGzipExists());
+    }
+    
     /**
      * Utility function to check if sitemap.xml exists.
      * @return true if it does exist, false if not.

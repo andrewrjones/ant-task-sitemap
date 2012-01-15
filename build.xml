@@ -95,6 +95,36 @@
             </fileset>
         </sitemap>
     </target>
+    
+    <target name="use.lastmod.today" description="Use with lastmod=today" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="today">
+            <fileset dir="${test-resources.dir}">
+                <include name="**.htm"/>
+                <include name="**.html"/>
+            </fileset>
+        </sitemap>
+    </target>
+    
+    <target name="use.lastmod.fromfile" description="Use with lastmod=fromfile" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="fromfile">
+            <fileset dir="${test-resources.dir}">
+                <include name="**.htm"/>
+                <include name="**.html"/>
+            </fileset>
+        </sitemap>
+    </target>
+    
+    <target name="use.lastmod.fail" description="Use with lastmod=fail" depends="jar">
+        <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
+        <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="fail">
+            <fileset dir="${test-resources.dir}">
+                <include name="**.htm"/>
+                <include name="**.html"/>
+            </fileset>
+        </sitemap>
+    </target>
 
 <!-- test tasks -->
     <target name="junit" description="Runs the unit tests" depends="compile-test, jar">
