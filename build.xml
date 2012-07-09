@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="ant-task-sitemap" basedir="." default="test">
+<project name="ant-task-sitemap" basedir="." default="build">
     <property file="build.properties" />
 
     <path id="classpath.run">
@@ -13,6 +13,11 @@
         <path location="${ant.test.lib}"/>
         <fileset dir="${testlib.dir}" includes="**/*.jar"/>
     </path>
+
+<!-- default target -->
+    <target name="build" description="Build JAR"
+      depends="clean, compile, jar"
+    />
 
 <!-- clean directories -->
     <target name="clean" description="Delete all generated files">
