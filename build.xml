@@ -14,8 +14,8 @@
     </path>
 
 <!-- default target -->
-    <target name="build" description="Build JAR"
-      depends="clean, compile, jar"
+    <target name="build" description="Build JAR, run tests"
+      depends="clean, compile, jar, compile-test, test"
     />
 
 <!-- clean directories -->
