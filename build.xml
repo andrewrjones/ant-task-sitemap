@@ -10,7 +10,6 @@
 
     <path id="classpath.test">
         <path refid="classpath.run"/>
-        <path location="${ant.test.lib}"/>
         <fileset dir="${testlib.dir}" includes="**/*.jar"/>
     </path>
 
