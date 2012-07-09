@@ -36,7 +36,7 @@
             <compilerarg value="-Xlint"/>
         </javac>
     </target>
-    
+
     <target name="compile-test" description="Compiles the tests">
         <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath.test" includeAntRuntime="false">
             <compilerarg value="-Xlint"/>
@@ -47,7 +47,7 @@
     <target name="jar" description="JARs the Task" depends="compile">
         <jar destfile="${jar}" basedir="${classes.dir}"/>
     </target>
-    
+
 <!-- create docs -->
     <target name="javadoc" description="Generates the javadoc">
         <javadoc packagenames="uk.co.arjones.ant.task.*"
@@ -70,7 +70,7 @@
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap/>
     </target>
-    
+
     <target name="use.without.destdir" description="Use without URL" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com"/>
@@ -80,7 +80,7 @@
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}"/>
     </target>
-    
+
     <target name="use.default" description="Use with default" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}">
@@ -90,7 +90,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.gzip" description="Use with default" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}" gzip="yes">
@@ -100,7 +100,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.index" description="Use with index defined" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}">
@@ -110,7 +110,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.index.about" description="Use with index defined" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}" index="about.*">
@@ -120,7 +120,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.lastmod.now" description="Use with lastmod=today" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="now">
@@ -130,7 +130,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.lastmod.fromfile" description="Use with lastmod=fromfile" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="fromfile">
@@ -140,7 +140,7 @@
             </fileset>
         </sitemap>
     </target>
-    
+
     <target name="use.lastmod.fail" description="Use with lastmod=fail" depends="jar">
         <taskdef name="sitemap" classname="uk.co.arjones.ant.task.Sitemap" classpathref="classpath.run"/>
         <sitemap url="http://www.example.com" destdir="${test-resources.dir}" lastmod="fail">
