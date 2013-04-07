@@ -85,3 +85,8 @@ TODO
 - Implement priority
 - Generate text sitemap
 - Generate ROR sitemap
+
+Build status
+------------
+
+[![Build Status](https://secure.travis-ci.org/andrewrjones/ant-task-sitemap.png)](http://travis-ci.org/andrewrjones/ant-task-sitemap)
